@@ -1,8 +1,8 @@
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Button } from "./ui/button";
+import Link from "next/link";
 import { Menu } from "lucide-react";
 import { nav } from "@/constant";
-import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export const MobileMenu = () => {
   return (
