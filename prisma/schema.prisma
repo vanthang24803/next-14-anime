@@ -9,3 +9,64 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Anime {
+  id          String     @id @default(uuid())
+  name        String
+  type        Type
+  categories  CATEGORY[]
+  episode     Int        @default(0)
+  thumbnail   String?
+  description String?
+  views       Int        @default(0)
+  author      String
+  chapters    Chapter[]
+  comments     Comments[]
+
+  creatAt  DateTime @default(now())
+  updateAt DateTime @updatedAt
+}
+
+model Chapter {
+  id      String @id @default(uuid())
+  name    String
+  title   String
+  url     String
+  anime   Anime  @relation(fields: [animeId], references: [id])
+  animeId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Comments {
+  id      String @id @default(uuid())
+  content String
+  author  String
+  anime   Anime  @relation(fields: [animeId], references: [id])
+  animeId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Type {
+  MOVIE
+  TV_SERIES
+}
+
+enum CATEGORY {
+  ACTION
+  SCIENCE
+  ROMANTIC
+  HORROR
+  MARITAL
+  COMEDY
+  SCHOOL
+  DETECTIVE
+  MUSIC
+  REINCARNATION
+  ADVENTURE
+  EVERYDAY_LIFE
+  ROBOT
+}
