@@ -22,8 +22,8 @@ export const Album = () => {
           <div className="overlay"></div>
         </div>
         <div className="relative overflow-hidden w-2/3 grid grid-cols-4 gap-4">
-          {restOfAlbum.map((item) => (
-            <div key={item.id} className="overflow-hidden">
+          {restOfAlbum.map((item, count) => (
+            <div key={count} className="overflow-hidden">
               <img
                 src={item.url}
                 alt="album"
@@ -37,11 +37,11 @@ export const Album = () => {
       </div>
 
       <div className="flex md:hidden mt-2 space-x-2 overflow-x-auto">
-        {album.map((item) => (
+        {album.map((item, index) => (
           <img
             src={item.url}
             alt="album"
-            key={item.id}
+            key={index}
             className="w-1/2 h-auto"
             onClick={() => router.push(item.href)}
           />
