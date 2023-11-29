@@ -1,30 +1,41 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { slides } from "@/constant";
 import { ArrowLeft, ArrowRight, Dot } from "lucide-react";
-import { Skeleton } from "./ui/skeleton";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export const Slide = () => {
+  const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
+
   const prevSlide = () => {
-    const isFirstSlide = currentIndex === 0;
-    const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
-    setCurrentIndex(newIndex);
+    setCurrentIndex((prevIndex) => {
+      const isFirstSlide = prevIndex === 0;
+      return isFirstSlide ? slides.length - 1 : prevIndex - 1;
+    });
   };
 
   const nextSlide = () => {
-    const isLastSlide = currentIndex === slides.length - 1;
-    const newIndex = isLastSlide ? 0 : currentIndex + 1;
-    setCurrentIndex(newIndex);
+    setCurrentIndex((prevIndex) => {
+      const isLastSlide = prevIndex === slides.length - 1;
+      return isLastSlide ? 0 : prevIndex + 1;
+    });
   };
 
   const goToSlide = (slideIndex: number) => {
     setCurrentIndex(slideIndex);
   };
 
-  const router = useRouter();
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      nextSlide();
+    }, 3000);
+
+    return () => clearInterval(intervalId);
+  }, [currentIndex]);
+
   return (
     <div className="lg:max-w-[1500px] max-w-[1200px] lg:h-[560px] md:h-[380px] h-[300px] w-full m-auto py-16  relative group z-10">
       <div
