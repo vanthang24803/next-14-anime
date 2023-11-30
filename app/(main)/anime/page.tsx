@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { AnimeModal } from "@/components/modal/anime-modal";
 import { ModalLoading } from "@/components/modal/modal-loading";
 import { Pagination } from "./_components/pagination";
-import { Navigation } from "./_components/navigation";
 
 export default function Animes() {
   const [currentPage, setCurrentPage] = useState(1);

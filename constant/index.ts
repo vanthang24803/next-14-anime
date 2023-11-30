@@ -125,11 +125,11 @@ export const navigator = [
   },
   {
     name: "Lãng mạn",
-    href: "/anime/",
+    href: "/anime/romantic",
   },
   {
     name: "Kinh dị",
-    href: "/anime/",
+    href: "/anime/horror",
   },
   {
     name: "Võ thuật",
