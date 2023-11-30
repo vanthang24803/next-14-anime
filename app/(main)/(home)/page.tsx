@@ -8,6 +8,7 @@ import { AnimeModal } from "@/components/modal/anime-modal";
 import { AnimeModalSlide } from "@/components/modal/anime-silde-modal";
 
 import { Album } from "./_components/album";
+import { ModalLoading } from "@/components/modal/modal-loading";
 
 export default async function Home() {
   const randomAnime = await getRandomAnime();
@@ -17,11 +18,27 @@ export default async function Home() {
   return (
     <div className="flex flex-col space-y-6 lg:space-y-8">
       <Slide />
-      <AnimeModal animes={newAnime} title="Tập Mới Nhất" />
+      {newAnime ? (
+        <AnimeModal animes={newAnime} title="Tập Mới Nhất" />
+      ) : (
+        <ModalLoading />
+      )}
       <Album />
-      <AnimeModalSlide animes={movieAlime} title="ANIME MOVIE" />
-      <AnimeModalSlide animes={randomAnime} title="HÔM NAY XEM GÌ" />
-      <AnimeModal animes={listAlime.items} title="TẤT CẢ ANIME" />
+      {movieAlime ? (
+        <AnimeModalSlide animes={movieAlime} title="ANIME MOVIE" />
+      ) : (
+        <ModalLoading />
+      )}
+      {randomAnime ? (
+        <AnimeModalSlide animes={randomAnime} title="HÔM NAY XEM GÌ" />
+      ) : (
+        <ModalLoading />
+      )}
+      {listAlime ? (
+        <AnimeModal animes={listAlime.items} title="TẤT CẢ ANIME" />
+      ) : (
+        <ModalLoading />
+      )}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 export const nav = [
   {
     label: "Anime",
-    href: "/animes",
+    href: "/anime",
   },
   {
     label: "Movie",
@@ -9,7 +9,7 @@ export const nav = [
   },
   {
     label: "Manga",
-    href: "/mangas",
+    href: "/manga",
   },
   {
     label: "BXH",
@@ -109,3 +109,86 @@ export const album = [
 
 export const banner =
   "https://i.imacdn.com/vg/2017/05/04/bb099a0659da6b2e_6486d0356896611b_97959514939121538123527.jpg";
+
+export const navigator = [
+  {
+    name: "Tất cả",
+    href: "/anime",
+  },
+  {
+    name: "Hành động",
+    href: "/anime/action",
+  },
+  {
+    name: "Viễn tưởng",
+    href: "/anime/",
+  },
+  {
+    name: "Lãng mạn",
+    href: "/anime/",
+  },
+  {
+    name: "Kinh dị",
+    href: "/anime/",
+  },
+  {
+    name: "Võ thuật",
+    href: "/anime/",
+  },
+  {
+    name: "Hài hước",
+    href: "/anime/",
+  },
+  {
+    name: "Trường học",
+    href: "/anime/",
+  },
+  {
+    name: "Trinh thám",
+    href: "/anime/",
+  },
+  {
+    name: "Âm nhạc",
+    href: "/anime/",
+  },
+  {
+    name: "Chuyển sinh",
+    href: "/anime/",
+  },
+  {
+    name: "Phiêu lưu",
+    href: "/anime/",
+  },
+  {
+    name: "Siêu nhiên",
+    href: "/anime/",
+  },
+  {
+    name: "Đời thường",
+    href: "/anime/",
+  },
+  {
+    name: "Giả tưởng",
+    href: "/anime/",
+  },
+  {
+    name: "Robot",
+    href: "/anime/",
+  },
+  {
+    name: "Game",
+    href: "/anime/",
+  },
+  {
+    name: "Thể thao",
+    href: "/anime/",
+  },
+  {
+    name: "Kịch tính",
+    href: "/anime/",
+  },
+  {
+    name: "Phép thuật",
+    href: "/anime/",
+  },
+];
