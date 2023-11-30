@@ -36,7 +36,12 @@ export async function POST(req: Request) {
 
 export async function GET(req: Request) {
   try {
-    const animes = await db.anime.findMany();
+    const animes = await db.anime.findMany({
+      orderBy: {
+        creatAt: "desc",
+      },
+      take: 12,
+    });
     return NextResponse.json(animes);
   } catch (error) {
     console.log(error);

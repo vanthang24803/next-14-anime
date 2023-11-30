@@ -1,20 +1,21 @@
+import getAnime from "@/actions/get-anime";
+import getRandomAnime from "@/actions/get-random-anime";
+
 import { Slide } from "@/components/silde";
+
 import { Album } from "./_components/album";
-import getAnime from "@/actions/get-alimes";
+import { AnimeNew } from "./_components/anime-new";
+import { AnimeRandom } from "./_components/anime-random";
 
 export default async function Home() {
-  const animeLists = await getAnime();
+  const randomAnime = await getRandomAnime();
+  const newAnime = await getAnime();
   return (
-    <>
+    <div className="flex flex-col space-y-4 md:space-y-6 lg:space-y-8">
       <Slide />
+      <AnimeNew animes={newAnime} />
       <Album />
-      <div className="">
-        {animeLists.map((item, index) => (
-          <div key={index}>
-           {item.name}
-          </div>
-        ))}
-      </div>
-    </>
+      <AnimeRandom animes={randomAnime} />
+    </div>
   );
 }

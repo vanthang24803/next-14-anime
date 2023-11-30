@@ -3,9 +3,9 @@ import { Anime } from "@/types";
 const URL = `${process.env.BASE_URL}/api/anime`;
 
 const getAnime = async (): Promise<Anime[]> => {
-  const result = await fetch(URL);
+  const respone = await fetch(URL);
 
-  return result.json();
+  return respone.json();
 };
 
 export default getAnime;
