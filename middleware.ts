@@ -7,6 +7,7 @@ export default authMiddleware({
     "/api/animes/random",
     "/api/animes",
     "/api/animes/movie",
+    "/api/animes/top",
   ],
 });
 

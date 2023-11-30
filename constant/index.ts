@@ -1,15 +1,15 @@
 export const nav = [
   {
     label: "Anime",
-    href: "/anime",
+    href: "/animes",
   },
   {
     label: "Movie",
-    href: "/movie",
+    href: "/movies",
   },
   {
     label: "Manga",
-    href: "/manga",
+    href: "/mangas",
   },
   {
     label: "BXH",
@@ -106,3 +106,6 @@ export const album = [
     href: "/",
   },
 ];
+
+export const banner =
+  "https://i.imacdn.com/vg/2017/05/04/bb099a0659da6b2e_6486d0356896611b_97959514939121538123527.jpg";

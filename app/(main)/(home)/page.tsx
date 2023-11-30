@@ -1,13 +1,13 @@
 import getAnime from "@/actions/get-anime";
 import getRandomAnime from "@/actions/get-random-anime";
-
-import { Slide } from "@/components/silde";
-
-import { Album } from "./_components/album";
-import { AnimeModal } from "./_components/anime-modal";
-import { AnimeModalSlide } from "./_components/anime-silde-modal";
 import getMovieAnime from "@/actions/get-movie-anime";
 import getListAlimes from "@/actions/get-all-animes";
+
+import { Slide } from "@/components/silde";
+import { AnimeModal } from "@/components/modal/anime-modal";
+import { AnimeModalSlide } from "@/components/modal/anime-silde-modal";
+
+import { Album } from "./_components/album";
 
 export default async function Home() {
   const randomAnime = await getRandomAnime();

@@ -5,13 +5,15 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Anime } from "@/types";
 import { useRouter } from "next/navigation";
 
-interface AnimeModalProps {
+interface AnimeTopProps {
   animes: Anime[] | undefined;
-  title : string;
+  title?: string;
 }
 
-export const AnimeModal = ({ animes, title }: AnimeModalProps) => {
+export const AnimeTop = ({ animes, title }: AnimeTopProps) => {
   const router = useRouter();
+
+  
   return (
     <div className="flex flex-col space-y-4">
       <h1 className="text-[25px] uppercase text-red-700">{title}</h1>
@@ -34,6 +36,9 @@ export const AnimeModal = ({ animes, title }: AnimeModalProps) => {
                   <span>Tập {item.episode}</span>
                   <span>{item.views} lượt xem</span>
                 </div>
+              </div>
+              <div className="absolute top-2 left-2 p-1 flex flex-col space-y-2 text-white w-[95%]">
+                <p className="font-medium text-4xl text-red-500">{index + 1}</p>
               </div>
             </div>
           ))}
