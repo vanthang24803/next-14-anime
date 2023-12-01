@@ -40,7 +40,7 @@ enum Type {
   TV_SERIES,
 }
 
-enum CATEGORY {
+export enum CATEGORY {
   ACTION,
   SCIENCE,
   ROMANTIC,

@@ -44,7 +44,7 @@ export default function Animes() {
       <div className="flex flex-col space-y-4">
         <div className="pb-10">
           {listAnime.length != 0 ? (
-            <AnimeModal animes={listAnime} />
+            <AnimeModal animes={listAnime} title="TẤT CẢ ANIME"/>
           ) : (
             <ModalLoading />
           )}

@@ -56,7 +56,7 @@ export const AnimeModalSlide = ({ animes, title }: AnimeModalSlideProps) => {
             <img
               src={item.thumbnail}
               alt={item.name?.toString()}
-              className="w-full lg:h-[300px] md:h-[250px] h-[220px] object-cover cursor-pointer duration-300 transition-transform transform origin-top hover:scale-105 hover:filter brightness-90 hover:brightness-75"
+              className="w-full lg:h-[300px] h-[220px] object-cover cursor-pointer duration-300 transition-transform transform origin-top hover:scale-105 hover:filter brightness-90 hover:brightness-75"
               onClick={() => router.push(`/anime/${item.id}`)}
             />
             <div

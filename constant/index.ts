@@ -5,7 +5,7 @@ export const nav = [
   },
   {
     label: "Movie",
-    href: "/movies",
+    href: "/movie",
   },
   {
     label: "Manga",

@@ -1,6 +1,6 @@
 const AnimeLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="py-20">
+    <div className="md:py-20 py-16">
       <>{children}</>
     </div>
   );
