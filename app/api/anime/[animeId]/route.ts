@@ -16,7 +16,11 @@ export async function GET(
         id: params.animeId,
       },
       include: {
-        chapters: true,
+        chapters: {
+          orderBy: {
+            createdAt: "desc",
+          },
+        },
         comments: true,
       },
     });

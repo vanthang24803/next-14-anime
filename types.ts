@@ -15,21 +15,22 @@ export type Anime = {
   updateAt?: Date;
 };
 
-type Chapter = {
-  id: String;
-  name: String;
-  title: String;
-  url: String;
-  animeId: String;
+export type Chapter = {
+  id: string;
+  name: string;
+  title: string;
+  thumbnail?: string;
+  url: string;
+  animeId: string;
 
-  creatAt: Date;
-  updateAt: Date;
+  creatAt: string;
+  upstringAt: string;
 };
 
 type Comments = {
-  id: String;
-  content: String;
-  author: String;
+  id: string;
+  content: string;
+  author: string;
 
   creatAt: Date;
   updateAt: Date;

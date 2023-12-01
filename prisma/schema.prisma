@@ -28,12 +28,13 @@ model Anime {
 }
 
 model Chapter {
-  id      String @id @default(uuid())
-  name    String
-  title   String
-  url     String
-  anime   Anime  @relation(fields: [animeId], references: [id])
-  animeId String
+  id        String @id @default(uuid())
+  name      String
+  title     String
+  thumbnail String
+  url       String
+  anime     Anime  @relation(fields: [animeId], references: [id])
+  animeId   String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
