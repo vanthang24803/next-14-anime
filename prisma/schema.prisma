@@ -21,7 +21,7 @@ model Anime {
   views       Int        @default(0)
   author      String
   chapters    Chapter[]
-  comments     Comments[]
+  comments    Comments[]
 
   creatAt  DateTime @default(now())
   updateAt DateTime @updatedAt
@@ -45,6 +45,15 @@ model Comments {
   author  String
   anime   Anime  @relation(fields: [animeId], references: [id])
   animeId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Wishlist {
+  id      String @id @default(uuid())
+  animeId String
+  userId  String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
