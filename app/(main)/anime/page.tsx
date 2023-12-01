@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { AnimeModal } from "@/components/modal/anime-modal";
 import { ModalLoading } from "@/components/modal/modal-loading";
 import { Pagination } from "./_components/pagination";
+import { Navigation } from "./_components/navigation";
 
 export default function Animes() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -39,19 +40,22 @@ export default function Animes() {
 
   return (
     <div className="flex flex-col space-y-4">
-      <div className="pb-10">
-        {listAnime.length != 0 ? (
-          <AnimeModal animes={listAnime} />
-        ) : (
-          <ModalLoading />
-        )}
+      <Navigation />
+      <div className="flex flex-col space-y-4">
+        <div className="pb-10">
+          {listAnime.length != 0 ? (
+            <AnimeModal animes={listAnime} />
+          ) : (
+            <ModalLoading />
+          )}
+        </div>
+        <Pagination
+          handleNextPage={handleNextPage}
+          handlePrevPage={handlePrevPage}
+          totalPage={totalPage}
+          currentPage={currentPage}
+        />
       </div>
-      <Pagination
-        handleNextPage={handleNextPage}
-        handlePrevPage={handlePrevPage}
-        totalPage={totalPage}
-        currentPage={currentPage}
-      />
     </div>
   );
 }
