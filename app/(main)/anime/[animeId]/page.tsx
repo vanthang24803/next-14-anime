@@ -15,8 +15,8 @@ const AnimeIdPage = async ({ params }: AnimeIdPageProps) => {
   const anime = await getDetailAnime(params.animeId);
   const randomAnime = await getRandomAnime();
   return (
-    <div className="flex flex-col space-y-6 md:space-y-10">
-      <Content chapters={anime.chapters} animeId={params.animeId} />
+    <div className="flex flex-col space-y-6 md:space-y-8">
+      <Content chapters={anime.chapters} anime={anime} />
       <Detail anime={anime} />
       {randomAnime ? (
         <AnimeModalSlide animes={randomAnime} title="HÔM NAY XEM GÌ" />

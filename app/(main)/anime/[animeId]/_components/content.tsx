@@ -2,31 +2,34 @@
 "use client";
 
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { Chapter } from "@/types";
+import { useState } from "react";
+import { Anime, Chapter } from "@/types";
 import { Clapperboard } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import { Tool } from "./tool";
 
 interface ContentProps {
-  animeId: string | undefined;
   chapters: Chapter[] | undefined;
+  anime: Anime | undefined;
 }
 
-export const Content = ({ chapters, animeId }: ContentProps) => {
+export const Content = ({ chapters, anime }: ContentProps) => {
   const [src, setSrc] = useState("");
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
-
+  const [title, setTilte] = useState("");
   const [timer, setTimer] = useState<null | NodeJS.Timeout>(null);
 
   const handlerSrc = (
     url: string,
     index: number,
     id: string,
-    animeId: string | undefined
+    animeId: string | undefined,
+    title: string
   ) => {
     setSrc(url);
     setSelectedIdx(index);
+    setTilte(title);
 
     if (timer) {
       clearTimeout(timer);
@@ -53,7 +56,7 @@ export const Content = ({ chapters, animeId }: ContentProps) => {
 
   return (
     <>
-      <div className="flex items-center lg:flex-row flex-col lg:space-y-0 space-y-6">
+      <div className="flex lg:flex-row flex-col lg:space-y-0 space-y-6">
         <div className="lg:w-3/4 w-full ">
           {src ? (
             <video
@@ -69,9 +72,18 @@ export const Content = ({ chapters, animeId }: ContentProps) => {
               <span>Chọn tập phim bạn muốn xem !</span>
             </div>
           )}
+          <div className="mt-6 flex flex-col space-y-2">
+            <span className="uppercase">
+              {anime?.name} {title}
+            </span>
+            <span className="text-[12px]">
+              {Number(anime?.views).toLocaleString("en-US")} lượt xem
+            </span>
+            <Tool anime={anime} />
+          </div>
         </div>
 
-        <ScrollArea className="h-[500px] w-full lg:w-1/4 border border-gray-300 md:mx-4 rounded">
+        <ScrollArea className="h-[500px] w-full lg:w-1/4 border border-gray-300 lg:mx-4 rounded">
           <div className="flex flex-col">
             <div className="flex flex-col justify-center px-4 pt-4 pb-3 ">
               <p className="uppercase text-neutral-600 text-sm">
@@ -85,7 +97,9 @@ export const Content = ({ chapters, animeId }: ContentProps) => {
                 <div
                   className="relative overflow-hidden  flex items-center hover:cursor-pointer space-x-2 group"
                   key={index}
-                  onClick={() => handlerSrc(item.url, index, item.id, animeId)}
+                  onClick={() =>
+                    handlerSrc(item.url, index, item.id, anime?.id, item.name)
+                  }
                 >
                   <img src={item.thumbnail} alt="img" className="w-1/3" />
                   <div
