@@ -7,12 +7,12 @@ export type Anime = {
   thumbnail?: string;
   description?: string;
   views?: number;
-  author?: String;
+  author?: string;
   chapters?: Chapter[];
   comments?: Comments[];
 
-  creatAt?: Date;
-  updateAt?: Date;
+  creatAt?: string;
+  updateAt?: string;
 };
 
 export type Chapter = {
@@ -28,13 +28,16 @@ export type Chapter = {
   upstringAt: string;
 };
 
-type Comments = {
+export type Comments = {
   id: string;
   content: string;
+  avatar: string;
+  authorName: string;
   author: string;
+  animeId: string;
 
-  creatAt: Date;
-  updateAt: Date;
+  creatAt: string;
+  upstringAt: string;
 };
 
 enum Type {

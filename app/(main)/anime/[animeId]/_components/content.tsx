@@ -8,6 +8,7 @@ import { Clapperboard } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Tool } from "./tool";
+import { Comment } from "./comment";
 
 interface ContentProps {
   chapters: Chapter[] | undefined;
@@ -19,6 +20,7 @@ export const Content = ({ chapters, anime }: ContentProps) => {
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
   const [title, setTilte] = useState("");
   const [timer, setTimer] = useState<null | NodeJS.Timeout>(null);
+  const [open, setOpen] = useState(true);
 
   const handlerSrc = (
     url: string,
@@ -82,42 +84,76 @@ export const Content = ({ chapters, anime }: ContentProps) => {
             <Tool anime={anime} />
           </div>
         </div>
-
         <ScrollArea className="h-[500px] w-full lg:w-1/4 border border-gray-300 lg:mx-4 rounded">
-          <div className="flex flex-col">
-            <div className="flex flex-col justify-center px-4 pt-4 pb-3 ">
-              <p className="uppercase text-neutral-600 text-sm">
-                Danh Sách Tập
-              </p>
-              <div className="bg-red-500 h-[2px] w-[120px]"></div>
-            </div>
-            <Separator />
-            <div className="flex flex-col space-y-4 px-2 py-4">
-              {chapters?.map((item, index) => (
-                <div
-                  className="relative overflow-hidden  flex items-center hover:cursor-pointer space-x-2 group"
-                  key={index}
-                  onClick={() =>
-                    handlerSrc(item.url, index, item.id, anime?.id, item.name)
-                  }
-                >
-                  <img src={item.thumbnail} alt="img" className="w-1/3" />
-                  <div
-                    className={`flex flex-col space-y-1 group-hover:text-red-600 group-hover:font-medium ${
-                      selectedIdx === index && "text-red-600 font-medium"
-                    }`}
-                  >
-                    <p className="text-[14px]">
-                      {item.name} - {item.title}
-                    </p>
-                    <p className="text-[11px] text-gray-600">
-                      {item.views} views
-                    </p>
-                  </div>
+          {open ? (
+            <div className="flex flex-col">
+              <div className="flex items-center justify-between">
+                <div className="flex flex-col justify-center px-4 pt-4 pb-3 hover:cursor-pointer">
+                  <p className="uppercase text-neutral-600 text-sm">
+                    Danh Sách Tập
+                  </p>
+                  <div className="bg-red-500 h-[2px] w-[120px]"></div>
                 </div>
-              ))}
+                <div className="flex flex-col justify-center px-4 pt-4 pb-3 hover:cursor-pointer">
+                  <p
+                    className="uppercase text-neutral-600 text-sm"
+                    onClick={() => setOpen(false)}
+                  >
+                    Bình luận
+                  </p>
+                  <div className="bg-transparent h-[2px] w-[75px]"></div>
+                </div>
+              </div>
+              <Separator />
+              <div className="flex flex-col space-y-4 px-2 py-4">
+                {chapters?.map((item, index) => (
+                  <div
+                    className="relative overflow-hidden  flex items-center hover:cursor-pointer space-x-2 group"
+                    key={index}
+                    onClick={() =>
+                      handlerSrc(item.url, index, item.id, anime?.id, item.name)
+                    }
+                  >
+                    <img src={item.thumbnail} alt="img" className="w-1/3" />
+                    <div
+                      className={`flex flex-col space-y-1 group-hover:text-red-600 group-hover:font-medium ${
+                        selectedIdx === index && "text-red-600 font-medium"
+                      }`}
+                    >
+                      <p className="text-[14px]">
+                        {item.name} - {item.title}
+                      </p>
+                      <p className="text-[11px] text-gray-600">
+                        {item.views} views
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className="flex flex-col">
+              <div className="flex items-center justify-between">
+                <div className="flex flex-col justify-center px-4 pt-4 pb-3 hover:cursor-pointer">
+                  <p
+                    className="uppercase text-neutral-600 text-sm"
+                    onClick={() => setOpen(true)}
+                  >
+                    Danh Sách Tập
+                  </p>
+                  <div className="bg-transparent h-[2px] w-[120px]"></div>
+                </div>
+                <div className="flex flex-col justify-center px-4 pt-4 pb-3 hover:cursor-pointer">
+                  <p className="uppercase text-neutral-600 text-sm">
+                    Bình luận
+                  </p>
+                  <div className="bg-red-500 h-[2px] w-[75px]"></div>
+                </div>
+              </div>
+              <Separator />
+              <Comment anime={anime}  />
+            </div>
+          )}
         </ScrollArea>
       </div>
     </>

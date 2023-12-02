@@ -17,7 +17,6 @@ export default  function ActionCategory() {
         const response = await axios.get(
           `/api/animes/category/action?page=${currentPage}`
         );
-        console.log(response.data)
         setListAnime(response.data.items);
         setTotalPage(response.data.totalPages);
       } catch (error) {
