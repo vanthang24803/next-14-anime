@@ -1,5 +1,5 @@
 export type Anime = {
-  id: String;
+  id: string;
   name?: String;
   type?: Type;
   categories?: CATEGORY[];
@@ -21,6 +21,7 @@ export type Chapter = {
   title: string;
   thumbnail?: string;
   url: string;
+  views: number;
   animeId: string;
 
   creatAt: string;

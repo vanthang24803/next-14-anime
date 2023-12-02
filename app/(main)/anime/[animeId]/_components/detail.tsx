@@ -13,7 +13,7 @@ interface DetailProps {
 export const Detail = ({ anime }: DetailProps) => {
   const router = useRouter();
   return (
-    <div className="flex flex-col md:flex-row lg:w-2/3 w-full md:space-x-4 md:space-y-0 space-y-6">
+    <div className="flex flex-col md:flex-row lg:w-3/4 w-full md:space-x-4 md:space-y-0 space-y-6 md:pr-6">
       <img
         src={anime?.thumbnail}
         className="md:w-[200px] w-full rounded md:h-[300px] h-[400px] object-fill"
