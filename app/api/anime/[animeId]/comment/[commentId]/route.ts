@@ -54,3 +54,65 @@ export async function DELETE(
     return new NextResponse("Internal Error", { status: 500 });
   }
 }
+
+export async function PATCH(
+  req: Request,
+  { params }: { params: { animeId: string; commentId: string } }
+) {
+  try {
+    const { content } = await req.json();
+
+    if (!content) {
+      return new NextResponse("Missing content", { status: 400 });
+    }
+
+    if (!params.animeId) {
+      return new NextResponse("Anime id is required", { status: 400 });
+    }
+
+    if (!params.commentId) {
+      return new NextResponse("Comment id is required", { status: 400 });
+    }
+
+    const { userId } = auth();
+
+    if (!userId) {
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
+
+    const anime = await db.anime.findUnique({
+      where: {
+        id: params.animeId,
+      },
+    });
+
+    if (!anime) {
+      return new NextResponse("Anime not found", { status: 404 });
+    }
+
+    const comment = await db.comments.findUnique({
+      where: {
+        id: params.commentId,
+        author: userId,
+      },
+    });
+
+    if (!comment) {
+      return new NextResponse("Comment not found", { status: 404 });
+    }
+
+    const updateComment = await db.comments.update({
+      where: {
+        id: params.commentId,
+      },
+      data: {
+        content: content,
+      },
+    });
+
+    return NextResponse.json(updateComment, { status: 200 });
+  } catch (error) {
+    console.error(error);
+    return new NextResponse("Internal Error", { status: 500 });
+  }
+}

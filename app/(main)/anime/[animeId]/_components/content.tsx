@@ -85,8 +85,8 @@ export const Content = ({ chapters, anime }: ContentProps) => {
             <Tool anime={anime} />
           </div>
         </div>
-        <ScrollArea className="h-[550px] w-full lg:w-1/4 border border-gray-300 lg:mx-4 rounded">
-          {open ? (
+        {open ? (
+          <ScrollArea className="h-[550px] w-full lg:w-1/4 border border-gray-300 lg:mx-4 rounded">
             <div className="flex flex-col">
               <div className="flex items-center justify-between">
                 <div className="flex flex-col justify-center px-4 pt-4 pb-3 hover:cursor-pointer">
@@ -132,30 +132,30 @@ export const Content = ({ chapters, anime }: ContentProps) => {
                 ))}
               </div>
             </div>
-          ) : (
-            <div className="flex flex-col">
-              <div className="flex items-center justify-between">
-                <div className="flex flex-col justify-center px-4 pt-4 pb-3 hover:cursor-pointer">
-                  <p
-                    className="uppercase text-neutral-600 text-sm"
-                    onClick={() => setOpen(true)}
-                  >
-                    Danh Sách Tập
-                  </p>
-                  <div className="bg-transparent h-[2px] w-[120px]"></div>
-                </div>
-                <div className="flex flex-col justify-center px-4 pt-4 pb-3 hover:cursor-pointer">
-                  <p className="uppercase text-neutral-600 text-sm">
-                    Bình luận
-                  </p>
-                  <div className="bg-red-500 h-[2px] w-[75px]"></div>
-                </div>
+          </ScrollArea>
+        ) : (
+         <div className="h-[550px] w-full lg:w-1/4 border border-gray-300 lg:mx-4 rounded">
+           <div className="flex flex-col">
+            <div className="flex items-center justify-between">
+              <div className="flex flex-col justify-center px-4 pt-4 pb-3 hover:cursor-pointer">
+                <p
+                  className="uppercase text-neutral-600 text-sm"
+                  onClick={() => setOpen(true)}
+                >
+                  Danh Sách Tập
+                </p>
+                <div className="bg-transparent h-[2px] w-[120px]"></div>
               </div>
-              <Separator />
-              <Comment anime={anime}  />
+              <div className="flex flex-col justify-center px-4 pt-4 pb-3 hover:cursor-pointer">
+                <p className="uppercase text-neutral-600 text-sm">Bình luận</p>
+                <div className="bg-red-500 h-[2px] w-[75px]"></div>
+              </div>
             </div>
-          )}
-        </ScrollArea>
+            <Separator />
+            <Comment anime={anime} />
+          </div>
+         </div>
+        )}
       </div>
     </>
   );

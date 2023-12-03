@@ -21,7 +21,11 @@ export async function GET(
             createdAt: "asc",
           },
         },
-        comments: true,
+        comments: {
+          orderBy: {
+            createdAt: "desc",
+          },
+        },
       },
     });
 

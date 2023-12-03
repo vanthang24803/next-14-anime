@@ -82,9 +82,7 @@ export const CommentForm = ({ animeId, onAddComment }: CommentFormProps) => {
           </form>
         </FormProvider>
       ) : (
-        <div className="flex items-center space-y-4 justify-center flex-col h-[300px]">
           <Button onClick={() => router.push("/sign-in")}>Login</Button>
-        </div>
       )}
     </>
   );

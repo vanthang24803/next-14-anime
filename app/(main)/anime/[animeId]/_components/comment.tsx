@@ -6,6 +6,7 @@ import { CommentList } from "./comment-list";
 import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import { on } from "events";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface CommnetProps {
   anime: Anime | undefined;
@@ -31,8 +32,10 @@ export const Comment = ({ anime }: CommnetProps) => {
 
   return (
     <div className="flex flex-col space-y-4 p-4">
+      <ScrollArea className="w-full h-[370px]">
+        <CommentList comments={comments} onLoadComment={loadComments} />
+      </ScrollArea>
       <CommentForm animeId={anime?.id} onAddComment={loadComments} />
-      <CommentList comments={comments} onLoadComment={loadComments} />
     </div>
   );
 };
