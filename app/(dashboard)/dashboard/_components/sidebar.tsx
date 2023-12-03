@@ -33,7 +33,7 @@ export const Sidebar = () => {
       <div
         onClick={() => handleItemClick(0)}
         className={`flex items-center space-x-4 h-10 px-4 rounded-md cursor-pointer ${
-          selectedIndex === 0 ? "bg-neutral-100" : ""
+          selectedIndex === 0 ? "bg-neutral-100 dark:bg-neutral-500" : ""
         }`}
       >
         <Package size={18} />
@@ -42,7 +42,7 @@ export const Sidebar = () => {
       <div
         onClick={() => handleItemClick(2)}
         className={`flex items-center space-x-4 h-10 px-4 rounded-md cursor-pointer ${
-          selectedIndex === 2 ? "bg-neutral-100" : ""
+          selectedIndex === 2 ? "bg-neutral-100 dark:bg-neutral-500" : ""
         }`}
       >
         <Bookmark size={18} />
@@ -51,7 +51,7 @@ export const Sidebar = () => {
       <div
         onClick={() => handleItemClick(1)}
         className={`flex items-center space-x-4 h-10 px-4 rounded-md cursor-pointer ${
-          selectedIndex === 1 ? "bg-neutral-100" : ""
+          selectedIndex === 1 ? "bg-neutral-100 dark:bg-neutral-500" : ""
         }`}
       >
         <Paperclip size={18} />

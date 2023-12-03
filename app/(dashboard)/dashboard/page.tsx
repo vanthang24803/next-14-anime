@@ -29,14 +29,14 @@ const Dashboard = async () => {
       <div className="flex items-center justify-between space-x-4 w-full hover:cursor-pointer">
         <Link
           href="/dashboard/movie"
-          className="flex flex-col items-center w-[500px] rounded-md border border-neutral-200  justify-center space-y-2 h-[150px] hover:bg-neutral-100"
+          className="flex flex-col items-center w-[500px] rounded-md border border-neutral-200 dark:hover:bg-neutral-500  justify-center space-y-2 h-[150px] hover:bg-neutral-100"
         >
           <Clapperboard className="w-16 h-16" />
           <span className="font-medium text-sm">Setting Anime Movie</span>
         </Link>
         <Link
-          href="/dashboard/tb_series"
-          className="flex flex-col items-center w-[500px] rounded-md border border-neutral-200  justify-center space-y-2 h-[150px] hover:bg-neutral-100"
+          href="/dashboard/tv_series"
+          className="flex flex-col items-center w-[500px] rounded-md border border-neutral-200 dark:hover:bg-neutral-500  justify-center space-y-2 h-[150px] hover:bg-neutral-100"
         >
           <Film className="w-16 h-16" />
           <span className="font-medium text-sm">Setting TV Series Movie</span>
@@ -44,7 +44,7 @@ const Dashboard = async () => {
       </div>
 
       <div className="pt-4 flex items-center justify-between w-full space-x-4">
-        <div className="flex flex-col p-8 w-[300px] rounded-md border border-neutral-200  space-y-6 h-[150px] hover:bg-neutral-100">
+        <div className="flex flex-col p-8 w-[300px] rounded-md border border-neutral-200  space-y-6 h-[150px] hover:bg-neutral-100 dark:hover:bg-neutral-500">
           <div className="flex items-center space-x-2">
             <span className="font-medium">Total Animes</span>
             <Info className="w-3 h-3" />
@@ -52,7 +52,7 @@ const Dashboard = async () => {
 
           <span className="text-2xl font-bold">{totalAnime}</span>
         </div>
-        <div className="flex flex-col p-8 w-[300px] rounded-md border border-neutral-200  space-y-6 h-[150px] hover:bg-neutral-100">
+        <div className="flex flex-col p-8 w-[300px] rounded-md border border-neutral-200  space-y-6 h-[150px] hover:bg-neutral-100 dark:hover:bg-neutral-500">
           <div className="flex items-center space-x-2">
             <span className="font-medium">Total Movie Anime</span>
             <Info className="w-3 h-3" />
@@ -60,7 +60,7 @@ const Dashboard = async () => {
 
           <span className="text-2xl font-bold">{totalMovieAnime}</span>
         </div>
-        <div className="flex flex-col p-8 w-[300px] rounded-md border border-neutral-200  space-y-6 h-[150px] hover:bg-neutral-100">
+        <div className="flex flex-col p-8 w-[300px] rounded-md border border-neutral-200  space-y-6 h-[150px] hover:bg-neutral-100 dark:hover:bg-neutral-500">
           <div className="flex items-center space-x-2">
             <span className="font-medium">Total Series Anime</span>
             <Info className="w-3 h-3" />

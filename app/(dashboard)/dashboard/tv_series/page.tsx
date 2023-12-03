@@ -4,10 +4,10 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { db } from "@/lib/db";
 
-export default async function Movie() {
-  const movies = await db.anime.findMany({
+export default async function Series() {
+  const series = await db.anime.findMany({
     where: {
-      type: "MOVIE",
+      type: "TV_SERIES",
     },
     orderBy: {
       creatAt: "desc",
@@ -18,7 +18,7 @@ export default async function Movie() {
   return (
     <div className="flex flex-col space-y-8">
       <div className="flex items-center justify-between w-[1000px]">
-        <span className="text-2xl font-medium uppercase">Anime Movie</span>
+        <span className="text-2xl font-medium uppercase">Anime Series</span>
         <Link href="/dashboard/anime/create">
           <Button size="icon" variant="primary">
             <Plus />
@@ -28,7 +28,7 @@ export default async function Movie() {
 
       <div className="w-[1000px] border border-neutral-200 rounded-md p-8">
         <div className="grid grid-cols-4 gap-4 ">
-          {movies.map((item, index) => (
+          {series.map((item, index) => (
             <Link
               href={`/dashboard/anime/${item.id}`}
               key={index}
