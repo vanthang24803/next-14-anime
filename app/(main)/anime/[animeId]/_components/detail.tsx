@@ -16,7 +16,7 @@ export const Detail = ({ anime }: DetailProps) => {
     <div className="flex flex-col md:flex-row lg:w-3/4 w-full md:space-x-4 md:space-y-0 space-y-6 md:pr-6">
       <img
         src={anime?.thumbnail}
-        className="md:w-[200px] w-full rounded md:h-[300px] h-[400px] object-fill"
+        className="hidden lg:flex md:w-[200px] w-full rounded md:h-[300px] h-[400px] object-fill"
         alt="thumbnail"
       />
       <div className="flex flex-col space-y-4">
@@ -38,7 +38,7 @@ export const Detail = ({ anime }: DetailProps) => {
           </Button>
         </div>
         <div className="flex items-center space-x-4 overflow-x-auto">
-        <span className="whitespace-nowrap">Thể loại:</span>
+          <span className="whitespace-nowrap">Thể loại:</span>
           <div className="flex items-center space-x-2">
             {anime?.categories?.map((item, index) => (
               <Button

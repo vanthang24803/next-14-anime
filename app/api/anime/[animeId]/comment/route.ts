@@ -1,5 +1,5 @@
 import { db } from "@/lib/db";
-import { auth } from "@clerk/nextjs";
+import { auth, currentUser } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
 export async function POST(
@@ -17,7 +17,9 @@ export async function POST(
       return new NextResponse("Missing body!", { status: 400 });
     }
 
-    const { userId, user } = auth();
+    const { userId } = auth();
+
+    const user = await currentUser();
 
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
@@ -31,8 +33,8 @@ export async function POST(
       data: {
         content,
         author: userId,
-        avatar: user?.imageUrl,
-        authorName: user?.firstName,
+        authorName: `${user.firstName} ${user.lastName}`,
+        avatar: user.imageUrl,
         animeId: params.animeId,
       },
     });

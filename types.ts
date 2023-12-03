@@ -11,7 +11,7 @@ export type Anime = {
   chapters?: Chapter[];
   comments?: Comments[];
 
-  creatAt?: string;
+  createdAt?: string;
   updateAt?: string;
 };
 
@@ -24,8 +24,8 @@ export type Chapter = {
   views: number;
   animeId: string;
 
-  creatAt: string;
-  upstringAt: string;
+  createdAt: string;
+  updateAt: string;
 };
 
 export type Comments = {
@@ -36,8 +36,8 @@ export type Comments = {
   author: string;
   animeId: string;
 
-  creatAt: string;
-  upstringAt: string;
+  createdAt: string;
+  updateAt: string;
 };
 
 enum Type {

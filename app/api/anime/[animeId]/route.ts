@@ -18,7 +18,7 @@ export async function GET(
       include: {
         chapters: {
           orderBy: {
-            createdAt: "desc",
+            createdAt: "asc",
           },
         },
         comments: true,

@@ -65,11 +65,12 @@ export const Content = ({ chapters, anime }: ContentProps) => {
               src={src}
               autoPlay
               controls
-              className="w-full lg:h-[500px] h-full object-cover rounded"
-              style={{ aspectRatio: "16/9" }}
+              preload="auto"
+              className="w-full lg:h-[550px] h-full object-cover rounded"
+              style={{ aspectRatio: "4/3" }}
             />
           ) : (
-            <div className="w-full lg:h-[500px] h-[300px]  rounded-md bg-slate-200 flex flex-col space-y-4 items-center justify-center">
+            <div className="w-full lg:h-[550px] h-[300px]  rounded-md bg-slate-200 flex flex-col space-y-4 items-center justify-center">
               <Clapperboard className="w-24 h-24" />
               <span>Chọn tập phim bạn muốn xem !</span>
             </div>
@@ -84,7 +85,7 @@ export const Content = ({ chapters, anime }: ContentProps) => {
             <Tool anime={anime} />
           </div>
         </div>
-        <ScrollArea className="h-[500px] w-full lg:w-1/4 border border-gray-300 lg:mx-4 rounded">
+        <ScrollArea className="h-[550px] w-full lg:w-1/4 border border-gray-300 lg:mx-4 rounded">
           {open ? (
             <div className="flex flex-col">
               <div className="flex items-center justify-between">

@@ -14,6 +14,7 @@ import { FormControl, FormField, FormItem } from "@/components/ui/form";
 
 interface CommentFormProps {
   animeId: String | undefined;
+  onAddComment: () => void;
 }
 
 const formSchema = z.object({
@@ -22,7 +23,7 @@ const formSchema = z.object({
 
 type CommentFormValue = z.infer<typeof formSchema>;
 
-export const CommentForm = ({ animeId }: CommentFormProps) => {
+export const CommentForm = ({ animeId, onAddComment }: CommentFormProps) => {
   const { isSignedIn } = useUser();
   const [loading, setLoading] = useState(false);
 
@@ -45,6 +46,7 @@ export const CommentForm = ({ animeId }: CommentFormProps) => {
       if (respone.status == 200) {
         setLoading(false);
         form.reset();
+        onAddComment();
       } else {
         setLoading(false);
         console.log("Wrong!");
