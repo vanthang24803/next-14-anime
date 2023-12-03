@@ -40,7 +40,7 @@ export type Comments = {
   updateAt: string;
 };
 
-enum Type {
+export enum Type {
   MOVIE,
   TV_SERIES,
 }
