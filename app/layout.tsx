@@ -3,6 +3,7 @@ import { Nunito } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
 import { ClerkProvider } from "@clerk/nextjs";
+import { ThemeProvider } from "@/components/provider/theme-provider";
 import { ModalProvider } from "@/components/provider/modal-provider";
 
 const font = Nunito({ subsets: ["latin"] });
@@ -30,7 +31,16 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <ModalProvider />
-        <body className={font.className}>{children}</body>
+        <body className={font.className}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </body>
       </html>
     </ClerkProvider>
   );
