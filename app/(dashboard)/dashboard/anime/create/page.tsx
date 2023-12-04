@@ -2,11 +2,9 @@
 
 import * as z from "zod";
 import axios from "axios";
-import { X } from "lucide-react";
 import { useState } from "react";
-import { Chapter } from "@/types";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -15,57 +13,45 @@ import { FormProvider, useForm } from "react-hook-form";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { FormControl, FormField, FormItem } from "@/components/ui/form";
 
-interface UpdateFormProps {
-  chapter: Chapter | undefined;
-  hanldeOpen: () => void;
-}
-
 const formSchema = z.object({
   name: z.string().min(1),
-  title: z.string().min(1),
+  type: z.string().min(1),
+  description: z.string().min(1),
   thumbnail: z.string().min(1),
-  url: z.string().min(1),
 });
 
-type CommentFormValue = z.infer<typeof formSchema>;
+type CreateFormValue = z.infer<typeof formSchema>;
 
-export const UpdateForm = ({ chapter, hanldeOpen }: UpdateFormProps) => {
-  const form = useForm<CommentFormValue>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: chapter?.name?.toString() || "",
-      title: chapter?.title || "",
-      thumbnail: chapter?.thumbnail || "",
-      url: chapter?.url,
-    },
-  });
-
+const Create = () => {
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
 
-  const onSubmit = async (data: CommentFormValue) => {
+  const form = useForm<CreateFormValue>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      type: "",
+      description: "",
+      thumbnail: "",
+    },
+  });
+
+  const onSubmit = async (data: CreateFormValue) => {
     try {
       setLoading(true);
-      const respone = await axios.patch(
-        `/api/anime/${chapter?.animeId}/chapter/${chapter?.id}`,
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axios.post(`/api/anime`, data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
-      if (respone.status == 200) {
+      if (response.status == 200) {
         setLoading(false);
-        form.reset();
-        toast.success("Success");
-        router.refresh();
-        hanldeOpen();
-      } else {
+        redirect("/");
+    } else {
         setLoading(false);
-        toast.error("Something went wrong!");
+        redirect("/");
       }
     } catch (error) {
       setLoading(false);
@@ -73,11 +59,9 @@ export const UpdateForm = ({ chapter, hanldeOpen }: UpdateFormProps) => {
     }
   };
 
-  const onRemove = async () => {};
-
   return (
     <FormProvider {...form}>
-      <ScrollArea className="w-[700px]">
+      <ScrollArea className="w-[1000px] border border-neutral-200 rounded-md p-8 flex flex-col space-y-2">
         <form
           className="w-full flex flex-col space-y-3"
           onSubmit={form.handleSubmit(onSubmit)}
@@ -88,18 +72,9 @@ export const UpdateForm = ({ chapter, hanldeOpen }: UpdateFormProps) => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <div className="flex items-start justify-between">
-                    <div className="flex flex-col mr-10 space-y-1">
-                      <h2 className="text-base font-bold">Name:</h2>
-                      <Input className="w-[500px]" {...field} required />
-                    </div>
-                    <Button
-                      size="icon"
-                      variant="destructive"
-                      onClick={hanldeOpen}
-                    >
-                      <X />
-                    </Button>
+                  <div className="flex flex-col mr-10 space-y-1">
+                    <h2 className="text-base font-bold">Name:</h2>
+                    <Input className="" {...field} required />
                   </div>
                 </FormControl>
               </FormItem>
@@ -108,13 +83,13 @@ export const UpdateForm = ({ chapter, hanldeOpen }: UpdateFormProps) => {
 
           <FormField
             control={form.control}
-            name="title"
+            name="type"
             render={({ field }) => (
               <FormItem>
                 <FormControl>
                   <div className="flex flex-col mr-10 space-y-1 mb-4">
-                    <h2 className="text-base font-bold">Title:</h2>
-                    <Input className="w-[500px]" {...field} required />
+                    <h2 className="text-base font-bold">Type:</h2>
+                    <Input className="" {...field} required />
                   </div>
                 </FormControl>
               </FormItem>
@@ -129,7 +104,7 @@ export const UpdateForm = ({ chapter, hanldeOpen }: UpdateFormProps) => {
                 <FormControl>
                   <div className="flex flex-col mr-10 space-y-1">
                     <h2 className="text-base font-bold">Thumbnail:</h2>
-                    <Input className="w-[500px]" {...field} required />
+                    <Input className="" {...field} required />
                   </div>
                 </FormControl>
               </FormItem>
@@ -138,37 +113,26 @@ export const UpdateForm = ({ chapter, hanldeOpen }: UpdateFormProps) => {
 
           <FormField
             control={form.control}
-            name="url"
+            name="description"
             render={({ field }) => (
               <FormItem>
                 <FormControl>
                   <div className="flex flex-col mr-10 space-y-1 mb-4">
-                    <h2 className="text-base font-bold">Url:</h2>
-                    <Textarea
-                      className="w-[500px] h-[20vh]"
-                      {...field}
-                      required
-                    />
+                    <h2 className="text-base font-bold">Description:</h2>
+                    <Textarea className=" h-[20vh]" {...field} required />
                   </div>
                 </FormControl>
               </FormItem>
             )}
           />
 
-          <Button className="w-[200px]" type="submit" disabled={loading}>
+          <Button className="w-[300px]" type="submit" disabled={loading}>
             Submit
           </Button>
         </form>
-
-        <Button
-          className="w-[200px] mt-4"
-          variant="destructive"
-          disabled={loading}
-          onClick={onRemove}
-        >
-          Remove
-        </Button>
       </ScrollArea>
     </FormProvider>
   );
 };
+
+export default Create;

@@ -13,14 +13,13 @@ export async function POST(req: Request) {
 
     const body = await req.json();
 
-    const { name, type, categories, episode, thumbnail, description } = body;
+    const { name, type, categories, thumbnail, description } = body;
 
     const anime = await db.anime.create({
       data: {
         name,
         type,
         categories,
-        episode,
         thumbnail,
         description,
         author: userId,

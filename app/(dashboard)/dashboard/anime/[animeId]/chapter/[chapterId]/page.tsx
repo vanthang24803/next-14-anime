@@ -1,8 +1,7 @@
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import getChapter from "@/actions/get-chapter-detail";
 import { ChapterForm } from "./_components/chapter-form";
-import Link from "next/link";
-import { Arrow } from "@radix-ui/react-dropdown-menu";
-import { ArrowLeft } from "lucide-react";
 
 interface ChapterProps {
   params: {
@@ -19,7 +18,7 @@ export default async function Chapter({ params }: ChapterProps) {
         <Link href={`/dashboard/anime/${params.animeId}`}
             className="hover:-translate-x-2 transition-all duration-100"
         >
-          <ArrowLeft />
+          <ArrowLeft /> 
         </Link>
         <h1 className="text-[25px] uppercase text-red-700">Chapter Detail</h1>
       </div>
