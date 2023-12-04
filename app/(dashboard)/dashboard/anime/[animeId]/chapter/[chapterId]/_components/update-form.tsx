@@ -1,8 +1,12 @@
+"use client";
+
 import * as z from "zod";
 import axios from "axios";
-import { Anime } from "@/types";
 import { X } from "lucide-react";
 import { useState } from "react";
+import { Chapter } from "@/types";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -10,29 +14,29 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { FormControl, FormField, FormItem } from "@/components/ui/form";
-import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
 
 interface UpdateFormProps {
-  anime: Anime | undefined;
+  chapter: Chapter | undefined;
   hanldeOpen: () => void;
 }
 
 const formSchema = z.object({
   name: z.string().min(1),
-  description: z.string().min(1),
+  title: z.string().min(1),
   thumbnail: z.string().min(1),
+  url: z.string().min(1),
 });
 
 type CommentFormValue = z.infer<typeof formSchema>;
 
-export const UpdateForm = ({ anime, hanldeOpen }: UpdateFormProps) => {
+export const UpdateForm = ({ chapter, hanldeOpen }: UpdateFormProps) => {
   const form = useForm<CommentFormValue>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: anime?.name?.toString() || "",
-      description: anime?.description || "",
-      thumbnail: anime?.thumbnail || "",
+      name: chapter?.name?.toString() || "",
+      title: chapter?.title || "",
+      thumbnail: chapter?.thumbnail || "",
+      url: chapter?.url,
     },
   });
 
@@ -43,11 +47,15 @@ export const UpdateForm = ({ anime, hanldeOpen }: UpdateFormProps) => {
   const onSubmit = async (data: CommentFormValue) => {
     try {
       setLoading(true);
-      const respone = await axios.patch(`/api/anime/${anime?.id}`, data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const respone = await axios.patch(
+        `/api/anime/${chapter?.animeId}/chapter/${chapter?.id}`,
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (respone.status == 200) {
         setLoading(false);
@@ -65,9 +73,7 @@ export const UpdateForm = ({ anime, hanldeOpen }: UpdateFormProps) => {
     }
   };
 
-  const onRemove = async () => {
-    toast.success("OK");
-  };
+  const onRemove = async () => {};
 
   return (
     <FormProvider {...form}>
@@ -102,6 +108,21 @@ export const UpdateForm = ({ anime, hanldeOpen }: UpdateFormProps) => {
 
           <FormField
             control={form.control}
+            name="title"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <div className="flex flex-col mr-10 space-y-1 mb-4">
+                    <h2 className="text-base font-bold">Title:</h2>
+                    <Input className="w-[500px]" {...field} required />
+                  </div>
+                </FormControl>
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
             name="thumbnail"
             render={({ field }) => (
               <FormItem>
@@ -117,12 +138,12 @@ export const UpdateForm = ({ anime, hanldeOpen }: UpdateFormProps) => {
 
           <FormField
             control={form.control}
-            name="description"
+            name="url"
             render={({ field }) => (
               <FormItem>
                 <FormControl>
                   <div className="flex flex-col mr-10 space-y-1 mb-4">
-                    <h2 className="text-base font-bold">Description:</h2>
+                    <h2 className="text-base font-bold">Url:</h2>
                     <Textarea
                       className="w-[500px] h-[20vh]"
                       {...field}
@@ -139,16 +160,14 @@ export const UpdateForm = ({ anime, hanldeOpen }: UpdateFormProps) => {
           </Button>
         </form>
 
-        {anime?.chapters?.length == 0 && (
-          <Button
-            className="w-[200px] mt-4"
-            variant="destructive"
-            disabled={loading}
-            onClick={onRemove}
-          >
-            Remove
-          </Button>
-        )}
+        <Button
+          className="w-[200px] mt-4"
+          variant="destructive"
+          disabled={loading}
+          onClick={onRemove}
+        >
+          Remove
+        </Button>
       </ScrollArea>
     </FormProvider>
   );
