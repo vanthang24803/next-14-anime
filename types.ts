@@ -11,7 +11,7 @@ export type Anime = {
   chapters?: Chapter[];
   comments?: Comments[];
 
-  createdAt?: string;
+  creatAt?: string;
   updateAt?: string;
 };
 
