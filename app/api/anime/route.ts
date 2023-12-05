@@ -36,8 +36,16 @@ export async function POST(req: Request) {
 export async function GET(req: Request) {
   try {
     const animes = await db.anime.findMany({
+      include: {
+        chapters: {
+          orderBy: {
+            createdAt: "desc",
+          },
+          take: 1,
+        },
+      },
       orderBy: {
-        creatAt: "desc",
+        creatAt: "asc",
       },
       take: 12,
     });

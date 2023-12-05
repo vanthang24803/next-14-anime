@@ -3,10 +3,11 @@
 
 import { useState } from "react";
 import { Anime } from "@/types";
-import { PencilLine } from "lucide-react";
+import { PencilLine, Plus } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { UpdateForm } from "./update-form";
+import { useRouter } from "next/navigation";
 
 interface DetailProps {
   anime: Anime | undefined;
@@ -18,6 +19,8 @@ export const Detail = ({ anime }: DetailProps) => {
   const handleOpen = () => {
     setOpen(!open);
   };
+
+  const router = useRouter();
 
   return (
     <div className="w-[1000px] border border-neutral-200 rounded-md p-8">
@@ -35,16 +38,24 @@ export const Detail = ({ anime }: DetailProps) => {
                 <h2 className="text-base font-bold">Name:</h2>
                 <span className="text-[14px]">{anime?.name}</span>
               </div>
-              <Button size="icon" variant="primary" onClick={handleOpen}>
-                <PencilLine />
-              </Button>
+              <div className="flex items-center space-x-3">
+                <Button size="icon" variant="outline" onClick={handleOpen}>
+                  <PencilLine />
+                </Button>
+                <Button
+                  size="icon"
+                  variant="primary"
+                  onClick={() =>
+                    router.push(`/dashboard/anime/${anime?.id}/chapter`)
+                  }
+                >
+                  <Plus />
+                </Button>
+              </div>
             </div>
           )}
           {open ? (
-            <UpdateForm
-              anime={anime}
-              hanldeOpen={handleOpen}
-            />
+            <UpdateForm anime={anime} hanldeOpen={handleOpen} />
           ) : (
             <>
               <div className="flex items-center space-x-2">
