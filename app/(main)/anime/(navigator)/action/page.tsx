@@ -6,7 +6,8 @@ import { AnimeModal } from "@/components/modal/anime-modal";
 import { ModalLoading } from "@/components/modal/modal-loading";
 import { Pagination } from "../../_components/pagination";
 
-export default  function ActionCategory() {
+
+export default function ActionCategory() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
   const [listAnime, setListAnime] = useState([]);

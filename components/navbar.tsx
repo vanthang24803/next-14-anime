@@ -6,6 +6,7 @@ import { MenuBar } from "@/components/menu-bar";
 import { MobileMenu } from "@/components/mobile-menu";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { ToggleTheme } from "@/components/toggle-theme";
+import { SearchPage } from "./search";
 
 export const Navbar = () => {
   return (
@@ -17,6 +18,7 @@ export const Navbar = () => {
           </div>
           <MenuBar />
         </div>
+        <SearchPage />
         <div className="space-x-4 md:block md:w-auto flex items-center justify-between w-full">
           <div className="md:hidden block">
             <Logo />
