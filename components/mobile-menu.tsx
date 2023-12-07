@@ -13,13 +13,15 @@ export const MobileMenu = () => {
         </Button>
       </SheetTrigger>
       <SheetContent>
-        <div className="flex flex-col space-y-6 mt-8">
+       <div className="flex flex-col space-y-2">
+         <div className="flex flex-col space-y-6 mt-8">
           {nav.map((item) => (
             <Button key={item.label} variant="ghost">
               <Link href={item.href || ""}>{item.label}</Link>
             </Button>
           ))}
         </div>
+       </div>
       </SheetContent>
     </Sheet>
   );
