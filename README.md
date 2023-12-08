@@ -53,4 +53,5 @@ Build Docker Image
 
 ## Screenshots
 
-![image](https://github.com/vanthang24803/node-mvc-blog/assets/101810628/ec78f10f-8f99-4667-9708-32ac1668b4c4)
+![image](https://github.com/vanthang24803/next-14-anime/assets/101810628/4318f418-f3fe-4dff-84a0-d92b3e934b0b)
+
