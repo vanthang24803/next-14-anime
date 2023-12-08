@@ -53,4 +53,5 @@ Build Docker Image
 
 ## Screenshots
 
+![image](https://github.com/vanthang24803/next-14-anime/assets/101810628/4318f418-f3fe-4dff-84a0-d92b3e934b0b)
 
