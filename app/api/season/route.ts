@@ -28,9 +28,12 @@ export async function GET(req: Request) {
   try {
     const listSeason = await db.season.findMany({
       orderBy: {
-        createdAt: "desc",
+        createdAt: "asc",
       },
       take: 9,
+      include: {
+        Anime: true,
+      },
     });
 
     return NextResponse.json(listSeason, { status: 200 });

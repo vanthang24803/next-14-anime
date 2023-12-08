@@ -8,11 +8,22 @@ export type Anime = {
   description?: string;
   views?: number;
   author?: string;
+  seasonId?: string;
   chapters?: Chapter[];
   comments?: Comments[];
 
   creatAt?: string;
   updateAt?: string;
+};
+
+export type Season = {
+  id: string;
+  thumbnail?: string;
+  href?: string;
+  name?: string;
+  Anime?: Anime[];
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type Banner = {

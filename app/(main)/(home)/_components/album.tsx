@@ -1,11 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { album } from "@/constant";
+import { Season } from "@/types";
 import { useRouter } from "next/navigation";
 
-export const Album = () => {
-  const [firstAlbum, ...restOfAlbum] = album;
+interface AlbumProps {
+  album: Season[] | undefined;
+}
+
+export const Album = ({ album }: AlbumProps) => {
+  const [firstAlbum, ...restOfAlbum] = album || [];
   const router = useRouter();
   return (
     <div className="flex flex-col">
@@ -13,11 +17,11 @@ export const Album = () => {
       <div className="md:flex hidden items-center justify-between pt-3 space-x-4">
         <div className="relative overflow-hidden w-1/3 group">
           <img
-            src={firstAlbum.url}
+            src={firstAlbum.thumbnail}
             alt="album"
             loading="lazy"
             className="w-full object-cover cursor-pointer group-hover:scale-105 duration-300 transition-transform transform origin-top"
-            onClick={() => router.push(firstAlbum.href)}
+            onClick={() => router.push(firstAlbum.href || "")}
           />
           <div className="overlay"></div>
         </div>
@@ -25,9 +29,9 @@ export const Album = () => {
           {restOfAlbum.map((item, count) => (
             <div key={count} className="overflow-hidden">
               <img
-                src={item.url}
+                src={item.thumbnail}
                 alt="album"
-                onClick={() => router.push(item.href)}
+                onClick={() => router.push(item.href || "")}
                 loading="lazy"
                 className="w-full object-cover cursor-pointer hover:scale-105 duration-300 transition-transform transform origin-top"
               />
@@ -37,13 +41,13 @@ export const Album = () => {
       </div>
 
       <div className="flex md:hidden mt-2 space-x-2 overflow-x-auto">
-        {album.map((item, index) => (
+        {album?.map((item, index) => (
           <img
-            src={item.url}
+            src={item.thumbnail}
             alt="album"
             key={index}
             className="w-1/2 h-auto"
-            onClick={() => router.push(item.href)}
+            onClick={() => router.push(item.href || "")}
           />
         ))}
       </div>

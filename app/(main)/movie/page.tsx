@@ -8,7 +8,7 @@ const Movies = async () => {
   return (
     <div className="flex flex-col">
       <Banner />
-      {movies ? <AnimeModal animes={movies} /> : <ModalLoading />}
+      {movies.length !== 0 ? <AnimeModal animes={movies} /> : <ModalLoading />}
     </div>
   );
 };

@@ -6,7 +6,7 @@ const TopAnime = async () => {
   const bxh = await getBXHAnime();
   return (
     <div className="py-20">
-      {bxh ? <AnimeTop animes={bxh} title="BẢNG XẾP HẠNG" /> : <ModalLoading />}
+      {bxh.length !== 0 ? <AnimeTop animes={bxh} title="BẢNG XẾP HẠNG" /> : <ModalLoading />}
     </div>
   );
 };
