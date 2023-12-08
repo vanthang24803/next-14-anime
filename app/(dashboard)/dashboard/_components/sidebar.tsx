@@ -1,8 +1,8 @@
 "use client";
 
-import { Bookmark, Package, Paperclip } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Bookmark, CalendarDays, Package, Paperclip } from "lucide-react";
 
 export const Sidebar = () => {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
@@ -21,6 +21,9 @@ export const Sidebar = () => {
         break;
       case 2:
         router.push("/dashboard/movie");
+        break;
+      case 3:
+        router.push("/dashboard/season");
         break;
       default:
         router.push("/dashboard");
@@ -56,6 +59,15 @@ export const Sidebar = () => {
       >
         <Paperclip size={18} />
         <span className="text-[14px]">TV Series</span>
+      </div>
+      <div
+        onClick={() => handleItemClick(3)}
+        className={`flex items-center space-x-4 h-10 px-4 rounded-md cursor-pointer ${
+          selectedIndex === 3 ? "bg-neutral-100 dark:bg-neutral-500" : ""
+        }`}
+      >
+        <CalendarDays size={18} />
+        <span className="text-[14px]">Season</span>
       </div>
     </div>
   );
