@@ -4,9 +4,9 @@ import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { MenuBar } from "@/components/menu-bar";
 import { MobileMenu } from "@/components/mobile-menu";
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { SearchPage } from "@/components/search";
 import { ToggleTheme } from "@/components/toggle-theme";
-import { SearchPage } from "./search";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 export const Navbar = () => {
   return (
