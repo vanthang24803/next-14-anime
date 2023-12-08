@@ -15,6 +15,12 @@ export type Anime = {
   updateAt?: string;
 };
 
+export type Banner = {
+  id: string;
+  url: string;
+  href: string;
+};
+
 export type Chapter = {
   id: string;
   name: string;

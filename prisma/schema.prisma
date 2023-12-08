@@ -20,11 +20,13 @@ model Anime {
   description String?
   views       Int        @default(0)
   author      String
+  season      String?
   chapters    Chapter[]
   comments    Comments[]
 
   creatAt  DateTime @default(now())
   updateAt DateTime @updatedAt
+  Season   Season[]
 }
 
 model Chapter {
@@ -55,8 +57,20 @@ model Comments {
 }
 
 model Banner {
-  id  String @id @default(uuid())
-  url String
+  id   String @id @default(uuid())
+  url  String
+  href String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Season {
+  id        String @id @default(uuid())
+  thumbnail String
+  href      String
+  animeId   String
+  anime     Anime  @relation(fields: [animeId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

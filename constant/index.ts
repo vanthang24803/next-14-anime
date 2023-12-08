@@ -16,50 +16,6 @@ export const nav = [
     href: "/top-anime",
   },
 ];
-
-export const slides = [
-  {
-    imageUrl:
-      "https://s199.imacdn.com/vg/2023/10/15/e32641f33487f998_2b1d3f948372a608_38325216973670791118684.jpg",
-    href: "/",
-  },
-  {
-    imageUrl:
-      "https://s199.imacdn.com/vg/2023/10/15/864d8df1112ef262_371d215a8d1d0379_150454216973679299118684.jpg",
-    href: "/",
-  },
-  {
-    imageUrl:
-      "https://s199.imacdn.com/vg/2023/10/15/a1e02d861cfd2757_b37b7dd1c0ade623_32888916973670718118684.jpg",
-    href: "/",
-  },
-  {
-    imageUrl:
-      "https://s199.imacdn.com/vg/2023/10/15/db226b83e19a0db4_de40f7bcb1b25a83_38908116973670493118684.jpg",
-    href: "/",
-  },
-  {
-    imageUrl:
-      "https://s199.imacdn.com/vg/2023/10/15/bded3da774a45af2_5bcfe460bb44b9f0_129229016973671343118684.jpg",
-    href: "/",
-  },
-  {
-    imageUrl:
-      "https://s199.imacdn.com/vg/2023/10/15/adaf895d28dbc4b1_72056e5ff7e04d42_121243616973679568118684.jpg",
-    href: "/",
-  },
-  {
-    imageUrl:
-      "https://s199.imacdn.com/vg/2023/10/25/3bf3b03a63b3cacc_996e45a57ccb35dd_30496816982129028118684.jpg",
-    href: "/",
-  },
-  {
-    imageUrl:
-      "https://s199.imacdn.com/vg/2023/10/15/7bac44895edb79c9_807067c3c7a31730_180643916973690093118684.jpg",
-    href: "/",
-  },
-];
-
 export const album = [
   {
     id: 1,
