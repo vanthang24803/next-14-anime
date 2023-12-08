@@ -53,4 +53,4 @@ Build Docker Image
 
 ## Screenshots
 
-![image](https://github.com/vanthang24803/node-mvc-blog/assets/101810628/ec78f10f-8f99-4667-9708-32ac1668b4c4)
+
